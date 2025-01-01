@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equation Plotter</title>
+</head>
+<body>
+    <h1>2D Equation Plotter</h1>
+    <form method="POST" action="/plot/" target="plot-frame">
+        {% csrf_token %}
+        <label for="equation">Enter Equation (e.g., x**2 - 3*x + 2):</label>
+        <input type="text" id="equation" name="equation" required>
+        <button type="submit">Plot</button>
+        {% if plot_url %}
+            <img src="{{ plot_url }}" alt="Plot">
+        {% endif %}
+    </form>
+    <h2>Plot:</h2>
+    <iframe name="plot-frame" style="width: 100%; height: 500px; border: none;"></iframe>
+</body>
+</html>
